@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: portwise-backend
+    env: docker
+    plan: free
+    region: oregon
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: SPRING_PROFILES_ACTIVE
+        value: local
+      - key: DEMO_MODE
+        value: "true"
+      - key: JWT_SECRET
+        value: portwise_cloud_super_secret_jwt_key_at_least_64_characters_long_for_security_2026
