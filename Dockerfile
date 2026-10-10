@@ -9,8 +9,17 @@ RUN mvn clean package -DskipTests
 # Runtime stage
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
-RUN addgroup -S portwise && adduser -S portwise -G portwise
+
+# Create dedicated portwise user and data directory with full write permissions
+RUN addgroup -S portwise && adduser -S portwise -G portwise \
+    && mkdir -p /app/data \
+    && chown -R portwise:portwise /app
+
+COPY --from=builder --chown=portwise:portwise /app/target/portwise-backend-*.jar app.jar
+
 USER portwise:portwise
-COPY --from=builder /app/target/portwise-backend-*.jar app.jar
+
+ENV PORT=8080
 EXPOSE 8080
+
 ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "app.jar"]
