@@ -1,0 +1,39 @@
+# Compiled class files
+target/
+*.jar
+*.war
+*.nar
+*.ear
+*.class
+
+# Maven
+.mvn/
+mvnw
+mvnw.cmd
+
+# Eclipse / IntelliJ / VS Code
+.classpath
+.project
+.settings/
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+
+# Local Database & persistent files
+data/
+*.mv.db
+*.trace.db
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment & secrets
+.env
+*.env.local
